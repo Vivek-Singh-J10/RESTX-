@@ -41,7 +41,11 @@
     "bootstrap": "^5.3.7",
   
       
-    "cloudinary": "^2.7.0",
+    "cloudinary": "^1.41.3",
+    
+  "multer-storage-cloudinary": "^4.0.0",
+
+
   
       
     "connect-flash": "^0.1.1",
