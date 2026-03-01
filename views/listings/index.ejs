@@ -1,0 +1,111 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container">
+
+  <!-- ── Categories + Tax Toggle ── -->
+  <div class="category-scroll-container">
+    <div id="filters">
+
+      <div class="filter" data-category="Trending">
+        <div><i class="fa-solid fa-fire-flame-curved"></i></div>
+        <p><i>Trending</i></p>
+      </div>
+      <div class="filter" data-category="Room">
+        <div><i class="fa-solid fa-cart-flatbed-suitcase"></i></div>
+        <p><i>Room</i></p>
+      </div>
+      <div class="filter" data-category="Urban Voyage">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p><i>Urban Voyage</i></p>
+      </div>
+      <div class="filter" data-category="Mountains">
+        <div><i class="fa-solid fa-mountain-sun"></i></div>
+        <p><i>Mountains</i></p>
+      </div>
+      <div class="filter" data-category="Castles">
+        <div><i class="fa-brands fa-fort-awesome"></i></div>
+        <p><i>Castles</i></p>
+      </div>
+      <div class="filter" data-category="Plunges">
+        <div><i class="fa-solid fa-water"></i></div>
+        <p><i>Plunges</i></p>
+      </div>
+      <div class="filter" data-category="Arctic">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p><i>Arctic</i></p>
+      </div>
+      <div class="filter" data-category="Beaches">
+        <div><i class="fa-solid fa-umbrella-beach"></i></div>
+        <p><i>Beaches</i></p>
+      </div>
+      <div class="filter" data-category="Farms">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p><i>Farms</i></p>
+      </div>
+      <div class="filter" data-category="Camps">
+        <div><i class="fa-solid fa-tent"></i></div>
+        <p><i>Camps</i></p>
+      </div>
+
+      <!-- Tax toggle pushed to the right on desktop, inline on mobile -->
+      <div class="tax-toggle ms-auto">
+        <div class="form-check form-switch form-check-reverse">
+          <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+          <label class="form-check-label" for="switchCheckDefault">Display taxes</label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="my-3">
+
+  <!-- No results message -->
+  <div id="no-listings-message" style="display:none; text-align:center; font-size:1.1rem; color:#BB2649; padding: 3rem 0;">
+    <i class="fa-solid fa-magnifying-glass me-2"></i>No listings found in this category.
+  </div>
+
+  <!-- ── Listings Grid ── -->
+  <div class="row row-cols-xl-3 row-cols-md-2 row-cols-1 g-4" id="listing-container">
+    <% for (let listing of allListings) { %>
+      <%- include('../includes/card', { listing }) %>
+    <% } %>
+  </div>
+
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const taxSwitch = document.getElementById('switchCheckDefault');
+    const allListingCards = document.querySelectorAll('.listing-card');
+    const originalPrices = new Map();
+
+    allListingCards.forEach(card => {
+      const priceElement = card.querySelector('.listing-price');
+      if (priceElement) {
+        const originalPrice = parseFloat(priceElement.textContent.replace(/[^0-9.]/g, ''));
+        if (!isNaN(originalPrice)) originalPrices.set(card, originalPrice);
+      }
+    });
+
+    taxSwitch.addEventListener("change", () => {
+      const isTaxChecked = taxSwitch.checked;
+      allListingCards.forEach(card => {
+        const priceElement = card.querySelector('.listing-price');
+        const taxInfoElement = card.querySelector('.tax-info');
+        const originalPrice = originalPrices.get(card);
+        if (originalPrice !== undefined) {
+          if (isTaxChecked) {
+            const finalPrice = originalPrice * 1.18;
+            priceElement.textContent = finalPrice.toLocaleString("en-IN", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+            if (taxInfoElement) taxInfoElement.style.display = "inline";
+          } else {
+            priceElement.textContent = originalPrice.toLocaleString("en-IN");
+            if (taxInfoElement) taxInfoElement.style.display = "none";
+          }
+        }
+      });
+    });
+  });
+</script>

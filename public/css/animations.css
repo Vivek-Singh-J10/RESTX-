@@ -1,0 +1,63 @@
+/* =============================================
+   RESTX — Subtle Animations
+   ============================================= */
+
+/* Page fade in */
+main.container {
+    animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards stagger in */
+.listing-card:nth-child(1) { animation: fadeUp 0.4s 0.05s ease both; }
+.listing-card:nth-child(2) { animation: fadeUp 0.4s 0.10s ease both; }
+.listing-card:nth-child(3) { animation: fadeUp 0.4s 0.15s ease both; }
+.listing-card:nth-child(4) { animation: fadeUp 0.4s 0.20s ease both; }
+.listing-card:nth-child(5) { animation: fadeUp 0.4s 0.25s ease both; }
+.listing-card:nth-child(6) { animation: fadeUp 0.4s 0.30s ease both; }
+
+/* Navbar brand */
+.navbar-brand {
+    animation: fadeIn 0.5s ease both;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Filter icon wiggle on active */
+.filter.active i {
+    animation: wiggle 0.3s ease;
+}
+@keyframes wiggle {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-10deg); }
+    75%  { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Button press */
+.btn:active {
+    transform: scale(0.97) !important;
+}
+
+/* Flash message */
+.alert {
+    animation: slideDown 0.3s ease both;
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Navbar glassmorphism on scroll */
+.navbar-edit.scrolled {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background-color: rgba(187, 38, 73, 0.92) !important;
+    box-shadow: 0 4px 24px rgba(187,38,73,0.3) !important;
+    transition: all 0.3s ease;
+}

@@ -1,0 +1,29 @@
+<div class="col listing-card" data-category="<%= listing.category %>">
+  <a href="/listings/<%= listing._id %>" class="listing-link">
+    <div class="card h-100">
+      <img
+        src="<%= listing.image.url %>"
+        class="card-img-top"
+        alt="<%= listing.title %> in <%= listing.location %>"
+        loading="lazy"
+        style="height: 20rem;"
+      />
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <b><%= listing.title %></b>
+          <span style="font-size:12px; color:#888; display:block; margin-bottom:4px;">
+            <i class="fa-solid fa-location-dot" style="color:#BB2649; margin-right:3px;"></i>
+            <%= listing.location %>, <%= listing.country %>
+          </span>
+          &#x20B9;&nbsp;<span class="listing-price">
+            <%= listing.price != null && typeof listing.price === 'number'
+              ? listing.price.toLocaleString("en-IN")
+              : 'N/A' %>
+          </span>/night
+          <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
+        </p>
+      </div>
+    </div>
+  </a>
+</div>

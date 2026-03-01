@@ -1,0 +1,154 @@
+<% layout("layouts/boilerplate")%>
+
+
+
+<!-- ── Hero image ── -->
+<div class="show-hero">
+  <img src="<%= listing.image.url %>" alt="<%= listing.title %>">
+  <div class="show-hero-overlay"></div>
+  <div class="show-hero-title">
+    <div class="owner-badge">
+      <i class="fa-regular fa-user"></i> Hosted by <%= listing.owner.username %>
+    </div>
+    <h1><%= listing.title %></h1>
+    <div class="meta-pills">
+      <span class="meta-pill"><i class="fa-solid fa-location-dot"></i> <%= listing.location %></span>
+      <span class="meta-pill"><i class="fa-solid fa-globe"></i> <%= listing.country %></span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Body grid ── -->
+<div class="show-body">
+
+  <!-- Left column -->
+  <div class="show-main">
+
+    <!-- Owner actions -->
+    <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
+    <div class="info-card d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <div class="section-label">Your listing</div>
+        <p style="margin:0;font-size:0.9rem;color:var(--muted);">Manage or remove this listing</p>
+      </div>
+      <div class="owner-actions">
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-dark">
+          <i class="fa-solid fa-pen me-1"></i> Edit
+        </a>
+        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" style="margin:0;">
+          <button class="btn btn-outline-danger" type="submit">
+            <i class="fa-solid fa-trash me-1"></i> Delete
+          </button>
+        </form>
+      </div>
+    </div>
+    <% } %>
+
+    <!-- Description -->
+    <div class="info-card">
+      <div class="section-label">About this place</div>
+      <p><%= listing.description %></p>
+    </div>
+
+    <!-- Details -->
+    <div class="info-card">
+      <div class="section-label">Details</div>
+      <div class="info-row"><i class="fa-solid fa-location-dot"></i> <%= listing.location %></div>
+      <div class="info-row"><i class="fa-solid fa-globe"></i> <%= listing.country %></div>
+      <div class="info-row"><i class="fa-regular fa-user"></i> Hosted by <strong>&nbsp;<%= listing.owner.username %></strong></div>
+    </div>
+
+    <!-- Review form -->
+    <% if(currUser) { %>
+    <div class="review-form-card">
+      <h4>Leave a Review</h4>
+      <form action="/listings/<%= listing._id %>/reviews" method="POST" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <fieldset class="starability-slot">
+            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+        </div>
+        <div class="mb-2">
+          <label for="comment" class="form-label fw-semibold small" style="text-transform:uppercase;letter-spacing:0.5px;font-size:0.75rem;">Your Comment</label>
+          <textarea name="review[comment]" id="comment" rows="4"
+            class="review-textarea" placeholder="Share your experience..." required></textarea>
+          <div class="invalid-feedback">Please add a comment before submitting.</div>
+        </div>
+        <button class="submit-review-btn" type="submit">Submit Review</button>
+      </form>
+    </div>
+    <% } %>
+
+    <!-- All reviews -->
+    <% if (listing.reviews.length > 0) { %>
+    <div>
+      <div class="section-label" style="padding: 0 0.25rem;">All Reviews</div>
+      <div class="reviews-grid">
+        <% for (let review of listing.reviews) { %>
+        <div class="review-item">
+          <div class="reviewer">@<%= review.author.username %></div>
+          <p class="starability-result" data-rating="<%= review.rating %>"></p>
+          <p class="review-comment"><%= review.comment %></p>
+          <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" style="margin:0;">
+            <button class="review-delete-btn" type="submit">
+              <i class="fa-solid fa-trash-can me-1"></i> Delete
+            </button>
+          </form>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <% } %>
+
+  </div><!-- /show-main -->
+
+  <!-- Right column: price card -->
+  <div class="show-sidebar">
+    <div class="price-card">
+      <div class="section-label">Price</div>
+      <div class="price-line">
+        &#x20B9;<%= listing.price.toLocaleString("en-IN") %>
+        <span>/ night</span>
+      </div>
+      <hr class="price-divider">
+      <div class="info-row mb-2"><i class="fa-solid fa-location-dot"></i> <%= listing.location %>, <%= listing.country %></div>
+      <div class="info-row"><i class="fa-regular fa-user"></i> <%= listing.owner.username %></div>
+      <form action="/listings/<%= listing._id %>/checkout" method="POST">
+        <button type="submit" class="reserve-btn">Reserve Now</button>
+      </form>
+      <p style="text-align:center;font-size:0.78rem;color:var(--muted);margin-top:0.75rem;">You won't be charged yet</p>
+    </div>
+  </div>
+
+</div><!-- /show-body -->
+
+<!-- ── Map ── -->
+<div class="map-section">
+  <h4><i class="fa-solid fa-map-location-dot me-2" style="color:var(--red);"></i>Where you can find it</h4>
+  <div id="map"></div>
+</div>
+
+<script>
+  let map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 28.61, lng: 77.21 },
+      zoom: 8,
+      styles: [
+        { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] },
+        { featureType: "transit", stylers: [{ visibility: "off" }] }
+      ]
+    });
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GOOGLE_MAPS_API_KEY%>&callback=initMap"></script>

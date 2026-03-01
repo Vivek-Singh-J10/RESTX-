@@ -1,0 +1,89 @@
+<% layout('/layouts/boilerplate') %>
+
+
+<div class="signup-wrapper">
+  <!-- Left: Branding Panel -->
+  <div class="signup-brand-panel d-none d-md-flex">
+    <div style="position: relative; z-index: 1;">
+      <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; margin-bottom: 1rem;">Welcome to RestX</p>
+      <h1 class="brand-tagline">Your home,<br>away from home.</h1>
+      <p class="brand-sub">Discover and share the best resting spots, restaurants, and hidden gems around the world.</p>
+      <ul class="brand-features">
+        <li>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Discover curated places near you
+        </li>
+        <li>
+          <i class="fa-solid fa-star"></i>
+          Read & write honest reviews
+        </li>
+        <li>
+          <i class="fa-solid fa-bookmark"></i>
+          Save your favorite spots
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Right: Form Panel -->
+  <div class="signup-form-panel">
+    <div class="auth-card">
+      <div class="mb-4">
+        <h2 class="fw-bold mb-1" style="font-size: 1.6rem;">Sign Up on RestX</h2>
+        <p class="text-muted small mb-0">Create an account to get started</p>
+      </div>
+
+      <form action="/signup" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="username" class="form-label fw-semibold small">USERNAME</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            class="form-control auth-input"
+            placeholder="Choose a username"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label fw-semibold small">EMAIL</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="form-control auth-input"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label fw-semibold small">PASSWORD</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            class="form-control auth-input"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <div class="d-grid gap-3">
+          <button class="btn auth-btn-primary py-2">
+            Sign Up
+          </button>
+          <div class="divider"><span>or</span></div>
+          <a href="/auth/google" class="btn btn-google py-2">
+            <i class="fa-brands fa-google me-2" style="color: #ea4335;"></i> Sign Up with Google
+          </a>
+        </div>
+      </form>
+
+      <p class="text-center mt-4 small text-muted mb-0">
+        Already have an account?
+        <a href="/login" class="fw-semibold text-decoration-none auth-link">Sign In</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<style>
+  .btn-search {
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: 0 25px 25px 0 !important;
+    color: #BB2649 !important;
+    padding: 0 1rem;
+    font-weight: 700;
+  }
+  .btn-search:hover {
+    background-color: #f0f0f0 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .btn-search i {
+    margin-right: 5px;
+    display: inline;
+  }
+  .search-input {
+    border-radius: 25px 0 0 25px !important;
+    background: rgba(255,255,255,0.15) !important;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    color: #fff !important;
+  }
+  .search-input::placeholder { color: rgba(255,255,255,0.6) !important; }
+  .search-input:focus {
+    background: rgba(255,255,255,0.22) !important;
+    border-color: rgba(255,255,255,0.5) !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+</style>
+
+<nav class="navbar navbar-edit navbar-expand-md border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings" style="color: azure;">
+      <i class="fa-regular fa-compass"></i> RestX
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation"
+      style="border-color:rgba(255,255,255,0.3);">
+      <span class="navbar-toggler-icon" style="filter:invert(1) opacity(0.8);"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" style="color: azure;" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav mx-auto">
+        <form class="d-flex" role="search" action="/listings">
+          <input
+            class="form-control me-0 search-input"
+            name="q"
+            id="search-input"
+            type="search"
+            placeholder="Search Places"
+            aria-label="Search"
+          />
+          <button class="btn btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto align-items-center gap-1">
+        <a class="nav-link" style="color: azure;" href="/listings/new">RestX your home</a>
+        <% if(!currUser){ %>
+          <a class="nav-link" style="color: azure;" href="/signup"><b>Sign Up</b></a>
+          <a class="nav-link" style="color: azure;" href="/login"><b>Sign In</b></a>
+        <% } if(currUser){ %>
+          <a class="nav-link" style="color: azure;" href="/logout"><b>Sign Out</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+</script>

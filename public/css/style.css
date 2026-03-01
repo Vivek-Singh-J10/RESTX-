@@ -1,0 +1,863 @@
+/* =================================================================
+   RESTX — MASTER STYLESHEET
+   Covers: Global, Navbar, Footer, Cards, Forms,
+           Index, Show, Login, Signup
+   ================================================================= */
+
+/* ── CSS Variables ─────────────────────────────────────────────── */
+:root {
+  --red:          #b5193a;
+  --red-hover:    #922b21;
+  --red-brand:    #BB2649;
+  --red-light:    rgba(181, 25, 58, 0.08);
+  --red-focus:    rgba(181, 25, 58, 0.10);
+  --text:         #1a1a1a;
+  --text-muted:   #6b7280;
+  --border:       #e9ecef;
+  --bg:           #f8f9fa;
+  --white:        #ffffff;
+  --card-shadow:  0 4px 24px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.14);
+}
+
+
+/* ================================================================
+   1. GLOBAL
+   ================================================================ */
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+.main-content-padding {
+  padding-top: 100px;
+}
+
+.valid-feedback {
+  color: #16a34a !important;
+  font-size: 12px !important;
+}
+
+
+/* ================================================================
+   2. NAVBAR
+   ================================================================ */
+.navbar-edit {
+  background-color: var(--red-brand) !important;
+  color: var(--white) !important;
+}
+
+.nav-link {
+  font-weight: 420 !important;
+  border-radius: 10px !important;
+  transition: all 0.2s ease-in-out !important;
+}
+.nav-link:hover {
+  box-shadow: 0 0 10px var(--white);
+  color: var(--white) !important;
+}
+
+
+/* ================================================================
+   3. FOOTER
+   ================================================================ */
+.f-info {
+  height: 8rem;
+  background: rgb(200, 200, 200);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-evenly;
+  text-align: center;
+  justify-content: center;
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brands {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-info-socials i {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+
+/* ================================================================
+   4. GLOBAL CARDS (listing index cards)
+   ================================================================ */
+.card {
+  border: none !important;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card-img-top {
+  width: 100% !important;
+  object-fit: cover !important;
+  height: 20rem !important;
+  border-radius: 1rem !important;
+}
+
+.card-body {
+  padding: 0 !important;
+}
+
+.card-text p {
+  font-weight: 500 !important;
+}
+
+.card-img-overlay {
+  opacity: 0;
+}
+.card-img-overlay:hover {
+  opacity: 0.3;
+  background-color: var(--white);
+}
+
+.listing-link {
+  text-decoration: none;
+  color: #222222;
+}
+.listing-link:hover {
+  text-decoration: underline;
+  color: #111;
+}
+
+
+/* ================================================================
+   5. GLOBAL FORMS & BUTTONS
+   ================================================================ */
+.form-control {
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+.form-control:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.edit-btn {
+  transition: transform 0.2s ease, box-shadow 0.1s ease !important;
+  background-color: var(--red-brand) !important;
+  border: none !important;
+  border-radius: 7px !important;
+  color: var(--white) !important;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ================================================================
+   6. INDEX PAGE — CATEGORY FILTER BAR
+   ================================================================ */
+.category-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) #f1f1f1;
+  padding-bottom: 4px;
+}
+
+.category-scroll-container::-webkit-scrollbar {
+  height: 4px;
+}
+.category-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border-radius: 4px;
+}
+
+#filters {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 0;
+  white-space: nowrap;
+  min-width: max-content;
+}
+
+.filter {
+  text-align: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease-in-out;
+}
+.filter:hover {
+  transform: scale(1.1);
+  color: var(--red);
+}
+.filter p {
+  font-size: 0.8rem;
+  margin: 0.2rem 0 0;
+  white-space: nowrap;
+}
+.filter.active {
+  transform: scale(1.1);
+  color: var(--red);
+  font-weight: 600;
+}
+
+/* Tax toggle */
+.tax-info {
+  display: none;
+}
+.tax-toggle {
+  border: 1px solid var(--red-brand);
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+#switchCheckDefault {
+  background-color: var(--red);
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+
+/* No listings message */
+#no-listings-message {
+  color: var(--red-brand);
+}
+
+/* Index responsive */
+@media (max-width: 576px) {
+  #filters {
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+  .filter p {
+    font-size: 0.72rem;
+  }
+  #listing-container {
+    --bs-gutter-x: 0.75rem;
+    --bs-gutter-y: 0.75rem;
+  }
+  .card-img-top {
+    height: 16rem !important;
+  }
+}
+
+
+/* ================================================================
+   7. SHOW PAGE
+   ================================================================ */
+
+/* Hero */
+.show-hero {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  border-radius: 0 0 24px 24px;
+}
+
+.show-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.show-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 55%);
+}
+
+.show-hero-title {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 2rem;
+  right: 2rem;
+  color: var(--white);
+}
+
+.show-hero-title h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 0.4rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.show-hero-title .meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.meta-pill {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--white);
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.owner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--white);
+  font-size: 0.82rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
+}
+
+/* Owner actions */
+.owner-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.owner-actions .btn {
+  border-radius: 10px;
+  padding: 0.5rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Body two-column grid */
+.show-body {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Section label */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--red);
+  margin-bottom: 0.5rem;
+}
+
+/* Info card — suppresses global .card scale */
+.info-card {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  padding: 1.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+  transform: none !important;
+  transition: none !important;
+}
+.info-card:hover {
+  transform: none !important;
+  box-shadow: var(--card-shadow) !important;
+}
+.info-card p {
+  color: var(--text-muted);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+.info-row i {
+  color: var(--red);
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Price card */
+.price-card {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  padding: 1.75rem 1.5rem;
+  position: sticky;
+  top: 1.5rem;
+  transform: none !important;
+  transition: none !important;
+}
+.price-card:hover {
+  transform: none !important;
+  box-shadow: var(--card-shadow) !important;
+}
+.price-card .price-line {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+.price-card .price-line span {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.price-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.25rem 0;
+}
+
+.reserve-btn {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  width: 100%;
+  padding: 0.85rem;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  transition: background 0.2s, transform 0.1s;
+}
+.reserve-btn:hover {
+  background: var(--red-hover);
+  color: var(--white);
+  transform: translateY(-1px) !important;
+  box-shadow: none !important;
+}
+
+/* Review form card */
+.review-form-card {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  padding: 1.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+  transform: none !important;
+  transition: none !important;
+}
+.review-form-card:hover {
+  transform: none !important;
+  box-shadow: var(--card-shadow) !important;
+}
+.review-form-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.review-textarea {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background: var(--bg);
+  width: 100%;
+  resize: vertical;
+  transition: border-color 0.2s;
+  transform: none !important;
+}
+.review-textarea:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+.review-textarea:focus {
+  border-color: var(--red);
+  background: var(--white);
+  box-shadow: 0 0 0 3px var(--red-focus);
+  outline: none;
+  transform: none !important;
+}
+
+.submit-review-btn {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.submit-review-btn:hover {
+  background: var(--red-hover);
+  color: var(--white);
+  transform: translateY(-1px) !important;
+  box-shadow: none !important;
+}
+
+/* Reviews grid */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.review-item {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 1.25rem 1.25rem 1rem;
+  transform: none !important;
+  transition: none !important;
+}
+.review-item:hover {
+  transform: none !important;
+  box-shadow: var(--card-shadow) !important;
+}
+.review-item .reviewer {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+.review-item .review-comment {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0.5rem 0 0.75rem;
+  line-height: 1.6;
+}
+
+.review-delete-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.review-delete-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Map */
+.map-section {
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  padding: 0 1.25rem;
+}
+.map-section h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+#map {
+  height: 400px;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+/* Show page responsive */
+@media (max-width: 768px) {
+  .show-hero {
+    height: 300px;
+    border-radius: 0 0 16px 16px;
+  }
+  .show-hero-title {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1.25rem;
+  }
+  .show-body {
+    grid-template-columns: 1fr;
+    margin-top: 1.25rem;
+    gap: 1.25rem;
+  }
+  .show-sidebar { order: -1; }
+  .price-card   { position: static; }
+
+  .info-card,
+  .review-form-card,
+  .review-item {
+    border-radius: 14px;
+    padding: 1.25rem 1rem;
+  }
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+  #map {
+    height: 260px;
+    border-radius: 14px;
+  }
+}
+
+
+/* ================================================================
+   8. LOGIN & SIGNUP PAGES
+   ================================================================ */
+
+/* Two-panel wrapper */
+.signup-wrapper {
+  min-height: 85vh;
+  display: flex;
+}
+
+/* Left branding panel */
+.signup-brand-panel {
+  background: linear-gradient(135deg, #b5193a 0%, #c0392b 60%, #922b21 100%);
+  color: var(--white);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.signup-brand-panel::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+.signup-brand-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.brand-tagline {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.5px;
+}
+.brand-sub {
+  font-size: 1.05rem;
+  opacity: 0.85;
+  max-width: 340px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.brand-features {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.brand-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+.brand-features li i {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Right form panel */
+.signup-form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background: var(--bg);
+}
+
+/* Auth card */
+.auth-card {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Auth inputs */
+.auth-input {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background: var(--bg);
+  transition: border-color 0.2s, background 0.2s;
+  /* suppress global form-control hover scale */
+  transform: none !important;
+}
+.auth-input:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+.auth-input:focus {
+  border-color: var(--red);
+  background: var(--white);
+  box-shadow: 0 0 0 3px var(--red-focus);
+  transform: none !important;
+}
+
+/* Primary auth button */
+.auth-btn-primary {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.1s;
+}
+.auth-btn-primary:hover {
+  background: var(--red-hover);
+  color: var(--white);
+  transform: translateY(-1px) !important;
+  box-shadow: none !important;
+}
+
+/* Google button */
+.btn-google {
+  background: var(--white);
+  color: #333;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.btn-google:hover {
+  border-color: var(--red);
+  box-shadow: 0 2px 12px var(--red-light);
+  color: #333;
+  transform: none !important;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  color: #adb5bd;
+  font-size: 0.85rem;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--border);
+}
+.divider span { padding: 0 0.75rem; }
+
+/* Auth link */
+.auth-link { color: var(--red); }
+.auth-link:hover { color: var(--red-hover); }
+
+/* Mobile brand banner (replaces side panel on small screens) */
+.mobile-brand-banner {
+  display: none;
+  background: linear-gradient(135deg, #b5193a 0%, #c0392b 60%, #922b21 100%);
+  color: var(--white);
+  padding: 2rem 1.5rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.mobile-brand-banner::after {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+}
+.mobile-brand-banner .brand-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 0.4rem;
+}
+.mobile-brand-banner h1 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Login / Signup responsive */
+@media (max-width: 767px) {
+  .signup-wrapper {
+    flex-direction: column;
+    min-height: 100svh;
+  }
+  .signup-brand-panel {
+    display: none;
+  }
+  .mobile-brand-banner {
+    display: block;
+  }
+  .signup-form-panel {
+    flex: 1;
+    background: var(--bg);
+    padding: 1.75rem 1rem 2rem;
+    align-items: flex-start;
+  }
+  .auth-card {
+    border-radius: 16px;
+    padding: 1.75rem 1.25rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  }
+  /* Prevent iOS auto-zoom on input focus */
+  .auth-input {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+  .auth-btn-primary,
+  .btn-google {
+    font-size: 1rem;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+}
